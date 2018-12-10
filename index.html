@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试函数在浏览器环境下的使用</title>
+</head>
+
+<body>
+    <div class="box-dragable-resize" id="box">
+        <div class="resize-line" id="line"></div>
+    </div>
+</body>
+
+<script>
+
+    let getId = (id) => document.getElementById(id);
+
+    let box = getId("box"),
+        line = getId("line"),
+        span = getId("span");
+
+    let getDataType = (d) => Object.prototype.toString.call(d),
+        isHtmlElement = (d) => findExist(getDataType(d), "HTML", "ELEMENT"),
+        findIndex = (s, ...list) => list.map(item => s.indexOf(item)),
+        findExistAll = (s, ...list) => !findIndex(s, list).includes(-1);
+
+    let pageListener = (n, event, cb) => {
+        n.addEventListener(event, (e) => {
+            e.stopPropagation();
+            cb && cb();
+        })
+    }
+
+    // 鼠标监听事件
+    let mouseListener = (n, event, cb) => {
+        pageListener(n, "mouse" + event, cb)
+    }
+
+    let box_down = function (event) {
+        mouseListener(box, "move", function () {
+            console.log(123);
+        })
+    }
+
+    // 监听line down
+    let line_down = function (event) {
+        let is_down = true; // 检测是否依然在down事件中
+        return function () {
+            if (is_down) mouseListener(line, "move", () => {
+
+            })
+        }
+    };
+
+    pageListener(box, "mousedown", function () {
+        console.log("这里是mousedown");
+        var index = 1;
+        for (var i in box) {
+            console.log(index, i);
+            ++index;
+        }
+    });
+
+    // var t = {
+    //     a: 321
+    // }
+    // // 模拟call的实现
+    // var fn = function () {
+
+    // }
+    // fn.a = 1;
+
+    // Function.prototype.test1 = function () {
+    //     console.log(this.a);
+    // }
+
+    // fn.test1();
+
+    // // 1. 生成call的第一个要点就是 这个函数被call的函数调用 
+    // // => 将called的函数放在作为call函数的属性  
+
+    // Function.prototype.call2 = function (content) {
+    //     // 当前this 指代的是当前函数
+    //     content.fn = this;
+    //     content.fn();
+    //     delete content.fn;
+    // }
+
+    // var arr = [""]
+</script>
+
+<!-- <script src="./dist/test.js"></script> -->
+
+</html>
+
+<style type="text/css">
+    body {
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .box-dragable-resize {
+        width: 500px;
+        height: 40px;
+        position: relative;
+        border: 1px solid #000;
+    }
+
+    .box-dragable-resize .resize-line {
+        width: 4px;
+        height: 100%;
+        position: absolute;
+        right: -2px;
+        cursor: w-resize;
+    }
+
+    .box-dragable-resize .resize-line:hover {
+        background-color: red
+    }
+</style>

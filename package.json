@@ -1,0 +1,33 @@
+{
+  "name": "ljytoolsnew",
+  "version": "0.0.4",
+  "description": "tools repositories 最新一版 之前一版没有再用了",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node ./test1.js",
+    "build": "npx webpack --mode production --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ljylhm/ljyTools.git"
+  },
+  "keywords": [
+    "liang",
+    "tools"
+  ],
+  "author": "ljy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ljylhm/ljyTools/issues"
+  },
+  "homepage": "https://github.com/ljylhm/ljyTools#readme",
+  "devDependencies": {
+    "@babel/core": "^7.1.6",
+    "@babel/preset-env": "^7.1.6",
+    "babel-loader": "^8.0.4",
+    "webpack": "^4.26.1",
+    "webpack-bundle-analyzer": "^3.0.3",
+    "webpack-cli": "^3.1.2"
+  }
+}
