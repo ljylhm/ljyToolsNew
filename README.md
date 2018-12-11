@@ -127,6 +127,7 @@ url.getUrl();  "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu
 ```
 
 <p style="font-size:14px;font-weight:600">getHost</p>
+
 ```javascript
 // 返回当前页面的主机名
 url.getHost();  "www.baidu.com"
