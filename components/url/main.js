@@ -128,8 +128,7 @@ const urlHelper = {
     }
 
 }
-var url = "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=split()#index",
-    url1 = "http://train.t.17usoft.net/cube/console/#/ad/task-info?id=145";
+var url = "https://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=1&rsv_idx=1&tn=baidu&wd=split()#index";
 
 console.log(setUrlParam(url, {
     a: 321,
