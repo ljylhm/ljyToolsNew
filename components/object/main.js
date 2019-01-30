@@ -3,6 +3,17 @@ let utils = {
     version: "0.0.1",
 
     /**
+     * @description 遍历一个对象
+     * @param {obj} 遍历的对象
+     * @param {fn} 
+     * @return {Void} 
+     * @summary 这段代码是copy尤大代码里面
+     */
+    forEachValue(obj, fn) {
+        Object.keys(obj).forEach(key => fn(obj[key], key))
+    },
+
+    /**
      * @description 对象的深拷贝
      * @return {Object} 一个新的对象
      * @example let c = {a:123,b:{a:123}} let b = deepClone({a:123,b:{a:123}}) 
