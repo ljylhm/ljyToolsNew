@@ -36,6 +36,50 @@ const utils = {
                 canRun = true
             }, timeout)
         }
+    },
+
+    /**
+     * @description 动态载入js 增加兼容IE的写法
+     * @param {url | String} 请求的网络地址
+     *  
+     * @param {opts | Function | object} 回调函数
+     *    @param {isBefore | Boolean} 插入的位置 相对于当前的script
+     *    @param {sccuess | Function } 成功的回调函数
+     *    @param {error | Function} 失败的回调函数
+     * @summary 此方法在chorme && microsoft上运行过 IE环境下有待考证 
+    */
+    dynamicLoadJs(url,opts={}){
+        var script = document.createElement("script")
+        var tag = document.getElementsByTagName("script")[0]
+        var fn = function(){}
+        var success,error
+        
+        if(typeof opts == 'function'){
+            success = opts
+            error = fn
+        }else{
+            success = opts.success || fn
+            error = opts.error || fn
+        }
+
+        // 如果在IE环境下
+        if(script.attachEvent){
+            script.attachEvent("onload",success)
+            script.attachEvent("onerror",error)
+        }else { // 其他在FF Chorme
+            script.addEventListener("load",success)
+            script.addEventListener("error",error)
+        }
+
+        script.src = url
+        script.type = "text/javascript"
+        
+        if(opts.isBefore == undefined || opts.isBefore == true){
+            tag.parentNode.insertBefore(script,tag)
+        } else {
+            tag.parentNode.appendChild(script)
+        }  
+            
     }
 }
 
