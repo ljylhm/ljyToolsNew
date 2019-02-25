@@ -48,38 +48,38 @@ const utils = {
      *    @param {error | Function} 失败的回调函数
      * @summary 此方法在chorme && microsoft上运行过 IE环境下有待考证 
     */
-    dynamicLoadJs(url,opts={}){
+    dynamicLoadJs(url, opts = {}) {
         var script = document.createElement("script")
         var tag = document.getElementsByTagName("script")[0]
-        var fn = function(){}
-        var success,error
-        
-        if(typeof opts == 'function'){
+        var fn = function () { }
+        var success, error
+
+        if (typeof opts == 'function') {
             success = opts
             error = fn
-        }else{
+        } else {
             success = opts.success || fn
             error = opts.error || fn
         }
 
         // 如果在IE环境下
-        if(script.attachEvent){
-            script.attachEvent("onload",success)
-            script.attachEvent("onerror",error)
-        }else { // 其他在FF Chorme
-            script.addEventListener("load",success)
-            script.addEventListener("error",error)
+        if (script.attachEvent) {
+            script.attachEvent("onload", success)
+            script.attachEvent("onerror", error)
+        } else { // 其他在FF Chorme
+            script.addEventListener("load", success)
+            script.addEventListener("error", error)
         }
 
         script.src = url
         script.type = "text/javascript"
-        
-        if(opts.isBefore == undefined || opts.isBefore == true){
-            tag.parentNode.insertBefore(script,tag)
+
+        if (opts.isBefore == undefined || opts.isBefore == true) {
+            tag.parentNode.insertBefore(script, tag)
         } else {
             tag.parentNode.appendChild(script)
-        }  
-            
+        }
+
     }
 }
 
