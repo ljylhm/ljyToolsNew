@@ -21,10 +21,10 @@ let utils = {
      */
 
     deepClone(data = {}) {
-        if (!data && !verify.isObject(data) && !verify.isFunction(data)) return null;
+        if (!data && !verify.isObject(data) && verify.isArray(data)) return null;
         // 如果是一个空对象的话
         if (verify.isEmptyObject(data)) return new Object();
-        let _new_object_ = verify.isFunction(data) ? new Function() : new Object();
+        let _new_object_ = verify.isArray(data) ? new Array() : new Object();
         for (let i in data) {
             if (verify.isObject(data[i]) || verify.isFunction(data[i])) {
                 _new_object_[i] = this.deepClone(data[i]);
