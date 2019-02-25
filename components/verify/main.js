@@ -32,10 +32,12 @@ let verify = {
     isFile: (data) => verify.getDataType(data) === "File",
     isBlob: (data) => verify.getDataType(data) === "Blob",
 
-    // 因为 Object include Function Array..  如果zhi
-    isObject: (data) => data !== null && typeof data === 'object',
+    // 因为 Object include Function Array..  是否是面板对象
+    isObject(data) {
+        if (this.isArray(data)) return false;
+        return (data !== null && typeof data === 'object');
+    },
     // =========== 检测指定类型函数End ===========
-
     /**
     * @description 检测是否在浏览器的环境中
     * @return {Boolean} boolean
@@ -51,6 +53,7 @@ let verify = {
     * @return {Boolean} boolean
     */
     isEmptyObject(data) {
+        console.log("进入到了");
         if (!this.isObject(data)) return false;
         if (Object.keys) return Object.keys(data).length <= 0;
         else { // hack 没有Object.keys的方法情况

@@ -103,7 +103,7 @@ let o = {
 
 // console.log(utils.deepClone(o));
 // console.log(utils.deepClone(o).d === o.d);
-console.log(utils.deepMerage(t, o).d === o.d);
-utils.baseMerge(t, o).d === o.d
+// console.log(utils.deepMerage(t, o).d === o.d);
+// utils.baseMerge(t, o).d === o.d
 
 export default utils;

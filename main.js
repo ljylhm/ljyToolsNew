@@ -1,4 +1,9 @@
 let t = require("./dist/main");
 module.exports = t;
-console.log(t.object);
+
+var x = {
+    a: 321,
+    b: []
+};
+
 
