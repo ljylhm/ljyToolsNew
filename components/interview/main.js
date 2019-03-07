@@ -42,20 +42,44 @@ export const dataStructure = {
     // 快速排序
     /**  
      * @description 快速排序
+     * @summary 快速排序的时间复杂度为O(nlogn)
+     * 如何计算快速排序的时间复杂度
+     * 快排实际是二分法的另外一种实践 假设有一个数组为n每次能够比较出一半的值
+     * n / 2K = 1  k = log2n == logn 即我们一共要比较logn次
+     * 因为有n个数 每次比较n次
+     * 时间复杂度为O(nlogn)
+     * 空间复杂度为O(n)最好的情况  O(n2)最差的情况
      **/
     quick(data = []) {
-        // 随机取中间数 选取中间的一个索引
+        // 找出中间的位置
         let partition = function (arr, low, high) {
-            let pivotkey = Math.ceil(low + high)
+            let pivot = low
 
+            // 这一次循环之后 low == high
+            while (low < high) {
+                // 这一次循环找出小于pivot的值
+                while (high > low && arr[high] > pivot) {
+                    --high
+                }
+                arr[low] = arr[high]
+                while (high > low && arr[low] <= pivot) {
+                    ++low
+                }
+                arr[high] = arr[low]
+            }
+            arr[low] = pivot
+            return low
         }
         // 主函数
         let quickSort = function (arr, low, high) {
-            let pivot;
             if (low < high) {
-                pivot = partition(low, high);
-                quickSort(arr, low, high)
+                let pivot = partition(arr, low, high)
+                quickSort(arr, low, pivot - 1)
+                quickSort(arr, pivot + 1, high)
             }
+            return arr
         }
+
+        return quickSort
     }
 }
