@@ -314,6 +314,8 @@ return "https://www.baidu.com/s?a=123&b=321#index"
         success(){} // 加载成功的时候
         isBefore:true // script标签添加在所有script之前还是之后
     })
+
+    <p>随便改一下</p>
 ```
 
 
