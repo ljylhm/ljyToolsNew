@@ -3,7 +3,7 @@
 # ljyTools
 <p style="border-bottom: 1px solid #eaecef"></p>
 
-### 说明
+### 说明1
 
 写Js也有一段时间了，将平时和工作中遇到的一些繁琐的操作进行封装，在后面遇到的时候可以快速的调用。整个库用webpack4进行打包，打包成library库发布至npm库。
 
